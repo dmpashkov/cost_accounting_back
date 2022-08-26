@@ -3,7 +3,7 @@ const Expense = require('../../models/expense');
 const getAllData = async (req, res) => {
   try {
     const result = await Expense.find();
-    res.status(200).send({ data: result })
+    res.status(200).send({data: result})
   } catch (error) {
     res.status(400).send('Bad Request expenses not found')
     console.error('expense not found');
@@ -24,7 +24,7 @@ const createNewExpense = async (req, res) => {
       date: today
     });
     const result = await expense.save();
-    res.status(200).send(result);
+    res.status(201).send(result);
   } catch (error) {
     res.status(400).send('Bad Request expense not saved')
     console.error('expense not saved');
@@ -42,7 +42,8 @@ const changeExpenseInfo = async (req, res) => {
     const price = req.body.price;
     const result = await Expense.findOneAndUpdate(
       {_id: id},
-      {$set: {text, price}}
+      {$set: {text, price}},
+      {new: true}
     );
     res.status(200).send(result);
   } catch (error) {

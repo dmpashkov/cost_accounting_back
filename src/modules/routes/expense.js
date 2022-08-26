@@ -15,8 +15,8 @@ const {
 } = require('../controllers/expense.controller');
 
 router.get('/expenses', getAllData);
-router.post('/new', textValidator, expenseValidator, createNewExpense);
-router.patch('/update/:expenseid', textValidator, expenseValidator, changeExpenseInfo);
-router.delete('/delete/:expenseid', deleteExpense);
+router.post('/expenses/new', textValidator, expenseValidator, createNewExpense);
+router.patch('/expenses/:expenseid/update', textValidator, expenseValidator, changeExpenseInfo);
+router.delete('/expenses/:expenseid/delete', deleteExpense);
 
 module.exports = router;
